@@ -1,0 +1,62 @@
+[tool.poetry]
+name = "abs-kolori-rl"
+version = "0.1.0"
+description = ""
+authors = ["Martin Popovski <martinkozle@yahoo.com>"]
+readme = "README.md"
+packages = [{include = "abs_kolori_rl"}]
+
+[[tool.poetry.source]]
+name = "pytorch"
+url = "https://download.pytorch.org/whl/cu117/"
+secondary = true
+
+[tool.poetry.dependencies]
+python = "~3.10"
+pyzmq = "^24.0.1"
+gym = "^0.23"
+tqdm = "^4.64.1"
+numpy = "~1.23"
+gputil = "^1.4.0"
+ray = {version = "^2.2.0", extras = ["rllib"]}
+torch = { version = "=1.13.1+cu117", source = "pytorch" }
+setuptools = "^66.1.1"
+
+[tool.poetry.group.dev.dependencies]
+ipython = "^8.8.0"
+mypy = "^0.991"
+black = "^22.12.0"
+ruff = "^0.0.227"
+isort = "^5.11.4"
+
+[tool.poetry.group.types.dependencies]
+types-tqdm = "^4.64.7.9"
+types-tensorflow = "^2.11.0.2"
+
+[tool.isort]
+profile = "black"
+
+[tool.mypy]
+strict = true
+disallow_untyped_calls = false
+
+[tool.ruff]
+select = [
+  # pyflakes
+  "F",
+  # pycodestyle
+  "E",
+  "W",
+  # flake8-2020
+  "YTT",
+  # flake8-bugbear
+  "B",
+  # flake8-quotes
+  "Q",
+  # pylint
+  "PLE", "PLR", "PLW",
+]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
